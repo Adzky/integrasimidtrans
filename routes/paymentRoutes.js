@@ -2,9 +2,9 @@ import express from "express";
 import {
   createTransaction,
   handleNotification,
-  checkStatus
-} from "../midtrans.js";
 
+} from "../midtrans.js";
+//checkStatus
 const router = express.Router();
 
 // ===============================
