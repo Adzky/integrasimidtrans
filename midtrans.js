@@ -127,6 +127,25 @@ export const handleNotification = async (req, res) => {
   }
 };
 
+export const checkStatus = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+
+    const statusResponse = await coreApi.transaction.status(orderId);
+
+    res.status(200).json({
+      order_id: statusResponse.order_id,
+      transaction_status: statusResponse.transaction_status,
+      payment_type: statusResponse.payment_type,
+      fraud_status: statusResponse.fraud_status
+    });
+
+  } catch (error) {
+    console.error("Error checkStatus:", error);
+    res.status(500).json({ message: "Gagal cek status transaksi" });
+  }
+};
+
 // export const checkStatus = async (req, res) => {
 //   try {
 //     const { order_id } = req.params;

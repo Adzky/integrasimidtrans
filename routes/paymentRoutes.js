@@ -2,9 +2,9 @@ import express from "express";
 import {
   createTransaction,
   handleNotification,
-
+  checkStatus
 } from "../midtrans.js";
-//checkStatus
+//
 const router = express.Router();
 
 // ===============================
@@ -20,6 +20,6 @@ router.post("/notification", handleNotification);
 // ===============================
 // Endpoint untuk cek status transaksi (opsional)
 // ===============================
-//router.get("/status/:order_id", checkStatus);
+router.get("/status/:order_id", checkStatus);
 
 export default router;
