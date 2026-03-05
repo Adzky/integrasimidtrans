@@ -34,6 +34,9 @@ export const createTransaction = async (req, res) => {
       }
     };
 
+    console.log("ServerKey:", process.env.MIDTRANS_SERVER_KEY);
+    console.log("ClientKey:", process.env.MIDTRANS_CLIENT_KEY);
+
     const transaction = await snap.createTransaction(parameter);
 
     res.status(200).json({
