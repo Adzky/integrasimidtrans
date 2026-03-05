@@ -19,10 +19,11 @@ const coreApi = new midtransClient.CoreApi({
 export const createTransaction = async (req, res) => {
   try {
     const { amount, first_name, email } = req.body;
+    const orderId = "ORDER-" + Date.now();
 
     const parameter = {
       transaction_details: {
-        order_id: "ORDER-" + Date.now(),
+        order_id: orderId,
         gross_amount: amount
       },
       credit_card: {
