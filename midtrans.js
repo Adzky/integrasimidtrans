@@ -134,18 +134,19 @@ export const checkStatus = async (req, res) => {
   try {
     const { orderId } = req.params;
 
+    console.log("Checking order:", orderId);
+
     const statusResponse = await coreApi.transaction.status(orderId);
 
-    res.status(200).json({
-      order_id: statusResponse.order_id,
-      transaction_status: statusResponse.transaction_status,
-      payment_type: statusResponse.payment_type,
-      fraud_status: statusResponse.fraud_status
-    });
+    res.status(200).json(statusResponse);
 
   } catch (error) {
-    console.error("Error checkStatus:", error);
-    res.status(500).json({ message: "Gagal cek status transaksi" });
+    console.error("Midtrans Error:", error.ApiResponse || error);
+
+    res.status(500).json({
+      message: "Gagal cek status transaksi",
+      error: error.ApiResponse || error.message
+    });
   }
 };
 
