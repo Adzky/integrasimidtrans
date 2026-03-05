@@ -41,6 +41,7 @@ export const createTransaction = async (req, res) => {
 
     res.status(200).json({
       message: "Transaksi berhasil dibuat",
+      order_id: orderId,
       token: transaction.token,
       redirect_url: transaction.redirect_url
     });
